@@ -1,0 +1,92 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+    ndkVersion rootProject.ext.ndkVersion
+    defaultConfig {
+        applicationId "com.huawei.itrustee.hiaihook"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+        ndk {
+            //abiFilters rootProject.ext.abiFilters.split(",")
+            abiFilters 'arm64-v8a'
+        }
+        externalNativeBuild {
+            cmake {
+                abiFilters rootProject.ext.abiFilters.split(",")
+                if (rootProject.ext.dependencyOnLocalLibrary) {
+                    arguments "-DDEPENDENCY_ON_LOCAL_LIBRARY=ON"
+                }
+            }
+        }
+    }
+    //选择本地编译时有两种选择
+    externalNativeBuild{
+        ndkBuild{
+            path "src/main/jni/Android.mk"
+        }
+        /*cmake {
+            path "src/main/jni/CMakeLists.txt"
+            version rootProject.ext.cmakeVersion
+        }*/
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    buildTypes {
+        debug {
+            minifyEnabled false
+        }
+        release {
+            minifyEnabled true
+        }
+    }
+    if (!rootProject.ext.dependencyOnLocalLibrary) {
+        buildFeatures {
+            prefab true
+        }
+    }
+    packagingOptions {
+        pickFirst '**/libbytehook.so'
+    }
+    if (rootProject.ext.useASAN) {
+        packagingOptions {
+            doNotStrip "**/*.so"
+        }
+    }
+
+    sourceSets {
+        main {
+            jni.srcDirs = []
+            jniLibs.srcDirs = ['libs']
+            //jniLibs.srcDirs = ['src/main/libs']
+        }
+    }
+    ndkVersion '23.1.7779620'
+}
+
+dependencies {
+    /*implementation 'androidx.appcompat:appcompat:1.4.0'
+    implementation 'com.google.android.material:material:1.4.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.2'*/
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:appcompat-v7:26.0.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation 'com.android.support:recyclerview-v7:28.0.0'
+    implementation 'com.android.support:cardview-v7:26.0.0-alpha1'
+    implementation 'androidx.cardview:cardview:1.0.0'
+
+    if (rootProject.ext.dependencyOnLocalLibrary) {
+        implementation project(':bytehook')
+    } else {
+        implementation 'com.bytedance:bytehook:1.0.4'
+    }
+}
+
+apply from: rootProject.file('gradle/sanitizer.gradle')
