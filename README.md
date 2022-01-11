@@ -1,1 +1,1 @@
-在荣耀v20设备上测试AI服务
+基于字节跳动bhook框架（https://github.com/bytedance/bhook），实现在荣耀v20设备上AI服务hiaiserver崩溃！
