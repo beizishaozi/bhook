@@ -71,12 +71,12 @@ public class ClassifyActivity extends AppCompatActivity implements View.OnClickL
             case R.id.radio_hook_single:
                 hookOrUnhook(0);
                 break;
-            case R.id.radio_hook_partial:
+            /*case R.id.radio_hook_partial:
                 hookOrUnhook(1);
                 break;
             case R.id.radio_hook_all:
                 hookOrUnhook(2);
-                break;
+                break;*/
             case R.id.radio_unhook:
                 hookOrUnhook(-1);
                 break;

@@ -15,26 +15,26 @@
         android:padding="10dp">
         <RadioButton android:id="@+id/radio_hook_single"
             style="@style/Theme.RadioButton"
-            android:text="hook open( ) in libhookee.so"
+            android:text="hook transct( ) in libhacker.so"
             android:onClick="onRadioButtonClicked"/>
-        <RadioButton android:id="@+id/radio_hook_partial"
+        <!--<RadioButton android:id="@+id/radio_hook_partial"
             style="@style/Theme.RadioButton"
             android:text="hook open( ) in partial ELF"
             android:onClick="onRadioButtonClicked"/>
         <RadioButton android:id="@+id/radio_hook_all"
             style="@style/Theme.RadioButton"
             android:text="hook open( ) in all ELF"
-            android:onClick="onRadioButtonClicked"/>
+            android:onClick="onRadioButtonClicked"/>-->
         <RadioButton android:id="@+id/radio_unhook"
             style="@style/Theme.RadioButton"
-            android:text="unhook open( )"
+            android:text="unhook transact( )"
             android:onClick="onRadioButtonClicked"/>
     </RadioGroup>
 
-    <Button style="@style/Theme.Button"
+    <!--<Button style="@style/Theme.Button"
         android:id="@+id/test"
         android:onClick="onTestClick"
-        android:text="call open( ) in libhookee.so" />
+        android:text="call open( ) in libhookee.so" />-->
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
