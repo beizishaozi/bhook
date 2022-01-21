@@ -139,6 +139,7 @@ public class ClassifyActivity extends AppCompatActivity implements View.OnClickL
                 break;
 
             case R.id.btn_async:
+                modelCompatibilityProcess();
                 if(interfaceCompatible) {
                     if (useNPU) {
                         Intent intent = new Intent(ClassifyActivity.this, AsyncClassifyActivity.class);

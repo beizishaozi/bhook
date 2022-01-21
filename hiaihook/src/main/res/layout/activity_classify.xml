@@ -31,10 +31,10 @@
             android:onClick="onRadioButtonClicked"/>
     </RadioGroup>
 
-    <!--<Button style="@style/Theme.Button"
+    <Button style="@style/Theme.Button"
         android:id="@+id/test"
         android:onClick="onTestClick"
-        android:text="call open( ) in libhookee.so" />-->
+        android:text="call open( ) in libhookee.so" />
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
